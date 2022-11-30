@@ -1,7 +1,7 @@
 using MedicalService.Driver;
 using MedicalService.Page;
 
-namespace MedicalService
+namespace MedicalService.Tests
 {
     public class Tests
     {
@@ -17,17 +17,17 @@ namespace MedicalService
             medicalPage = new MedicalPage();
         }
         [TearDown]
-        public void Close() 
+        public void Close()
         {
             WebDrivers.CleanUp();
-        
+
         }
 
         [Test]
         public void TC01_MakeAppointmen_ShouldAppointmentBeCompleted()
         {
             loginPage.AppMed.Click();
-            loginPage.Login( "John Doe", "ThisIsNotAPassword" );
+            loginPage.Login("John Doe", "ThisIsNotAPassword");
             medicalPage.SelectOption("Hongkong CURA Healthcare Center");
             medicalPage.CheckBox.Click();
             medicalPage.MedicId.Click();
@@ -35,7 +35,7 @@ namespace MedicalService
             medicalPage.Comment.SendKeys("Zakazano");
             medicalPage.ButtonApp.Submit();
 
-            Assert.That("Appointment Confirmation",Is.EqualTo(medicalPage.Confirm.Text));
+            Assert.That("Appointment Confirmation", Is.EqualTo(medicalPage.Confirm.Text));
         }
 
     }
